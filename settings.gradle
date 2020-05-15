@@ -1,0 +1,7 @@
+rootProject.name = 'cleaner-root'
+//include 'cleaner-8'
+//include 'cleaner-9'
+include 'cleaner'
+
+findProject(':cleaner-8')?.name = 'cleaner-8'
+findProject(':cleaner-9')?.name = 'cleaner-9'

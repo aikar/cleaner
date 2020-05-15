@@ -1,0 +1,4 @@
+dependencies {
+    compile group: 'co.aikar', name: 'cleaner-8', version: '1.0-SNAPSHOT'
+    compile group: 'co.aikar', name: 'cleaner-9', version: '1.0-SNAPSHOT'
+}

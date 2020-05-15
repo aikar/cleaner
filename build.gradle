@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+subprojects {
+
+    group 'co.aikar'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            name 'aikar'
+            url 'https://repo.aikar.co/content/groups/aikar/'
+        }
+    }
+
+
+    task deploy() {
+        dependsOn install
+        dependsOn uploadArchives
+    }
+
+    if (project.hasProperty('aikarRepoUser') && project.hasProperty('aikarRepoPass')) {
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: 'https://repo.aikar.co/content/repositories/aikar-snapshots/') {
+                        authentication(userName: aikarRepoUser, password: aikarRepoPass)
+                    }
+
+                    snapshotRepository(url: 'https://repo.aikar.co/content/repositories/aikar-snapshots/') {
+                        authentication(userName: aikarRepoUser, password: aikarRepoPass)
+                    }
+                }
+            }
+        }
+    }
+}
